@@ -72,11 +72,55 @@ h1{font-family:Georgia,serif;font-size:clamp(38px,5vw,68px);line-height:1.02;mar
   font-weight:900;cursor:pointer;box-shadow:0 12px 22px rgba(77,7,23,.22)
 }
 .pay:disabled{opacity:.55;cursor:not-allowed}
+.confirm-link{
+  display:block;width:min(650px,100%);margin:14px auto 0;border:1px solid #d8a33c;
+  border-radius:13px;padding:14px;background:#fff1cf;color:#641227;font-size:16px;
+  font-weight:850;cursor:pointer
+}
 .pay small{display:block;font-size:13px;font-weight:600;margin-top:3px}
 .help{text-align:center;color:var(--muted);font-size:13px;line-height:1.5;margin:11px auto 0;max-width:720px}
 .status{text-align:center;font-weight:750;color:#671226;min-height:22px;margin:10px 0 0}
 .payment-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
 .qr-box{text-align:center}
+
+.phonepe-qr-card{
+  background:#fff;
+  border:1px solid #e4c889;
+  border-radius:18px;
+  padding:22px 18px 18px;
+  text-align:center;
+  max-width:390px;
+  margin:0 auto;
+  box-shadow:0 8px 22px rgba(77,7,23,.08);
+}
+.phonepe-brand{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  font-size:30px;
+  font-weight:700;
+  color:#222;
+  margin-bottom:18px;
+}
+.phonepe-logo{
+  display:inline-flex;
+  width:48px;height:48px;border-radius:50%;
+  align-items:center;justify-content:center;
+  background:#6b1fc1;color:#fff;font-size:30px;font-weight:800;
+}
+.accepted{
+  color:#6b1fc1;font-size:23px;font-weight:900;letter-spacing:.4px;
+  margin-bottom:22px;
+}
+.scan-text{font-size:16px;color:#333;margin-bottom:18px}
+.qr-generated{
+  width:290px;height:290px;max-width:100%;
+  margin:0 auto 16px;display:flex;align-items:center;justify-content:center;
+  background:#fff;
+}
+.qr-generated img{width:100%;height:100%;image-rendering:auto}
+
 .qr{
   width:min(360px,100%);display:block;margin:0 auto 12px;background:#fff;padding:8px;border-radius:16px;
   border:1px solid #ebcf97
@@ -143,12 +187,16 @@ footer{text-align:center;color:#f6d477;padding:28px 18px 34px;font-size:13px}
       <button class="amount" data-amount="6001">₹6,001</button>
     </div>
     <div class="other">
-      <label for="otherAmount">🙏 Other Amount</label>
+      <label for="otherAmount">👤 Other Amount</label>
       <input id="otherAmount" type="number" min="1" step="1" placeholder="Enter amount (₹)">
     </div>
     <button id="payButton" class="pay" type="button" onclick="payViaUPI()" disabled>
       Donate Now via UPI
       <small>Pay securely with any UPI App</small>
+    </button>
+    <button id="confirmPayment" class="confirm-link" type="button"
+            onclick="document.getElementById('confirm').scrollIntoView({behavior:'smooth'})">
+      ✓ I've Completed the Payment
     </button>
     <div id="status" class="status">Please select an amount to continue.</div>
     <p class="help">On mobile, the button will try to open an installed UPI app. If it doesn't open, simply scan the QR code or copy the UPI ID below.</p>
@@ -195,14 +243,20 @@ footer{text-align:center;color:#f6d477;padding:28px 18px 34px;font-size:13px}
     <h2 class="section-title">Scan &amp; Pay</h2>
     <div class="payment-grid">
       <div class="qr-box">
-        <img class="qr" src="upi-qr.png" alt="PhonePe UPI QR code">
-        <div class="payee">MAKADIA AKSHAY PATEL</div>
-        <div class="upi-id">UPI ID: 93913729112@axl</div>
+        <div class="phonepe-qr-card">
+          <div class="phonepe-brand"><span class="phonepe-logo">पे</span><span>PhonePe</span></div>
+          <div class="accepted">ACCEPTED HERE</div>
+          <div class="scan-text">Scan any QR using PhonePe App</div>
+          <div id="upiQr" class="qr-generated" aria-label="UPI QR code"></div>
+          <div class="payee">PASULA SAI KRISHNA</div>
+        </div>
+        <div class="payee">PASULA SAI KRISHNA</div>
+        <div class="upi-id">UPI ID: pasulaikrishna@axl</div>
       </div>
       <div>
         <h3 style="color:#671226;font-family:Georgia,serif;font-size:24px;margin-top:0">Pay Using Any UPI App</h3>
         <div class="upi-row">
-          <span class="upi-id">93913729112@axl</span>
+          <span class="upi-id">pasulaikrishna@axl</span>
           <button class="copy" type="button" onclick="copyUPI()">Copy UPI ID</button>
         </div>
         <div class="apps">
@@ -232,9 +286,10 @@ footer{text-align:center;color:#f6d477;padding:28px 18px 34px;font-size:13px}
   <div class="creator-credit">Designed &amp; Created by <strong>Makadia Akshay Patel</strong></div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
-const UPI_ID = "93913729112@axl";
-const PAYEE = "MAKADIA AKSHAY PATEL";
+const UPI_ID = "pasulaikrishna@axl";
+const PAYEE = "PASULA SAI KRISHNA";
 const amountButtons = document.querySelectorAll(".amount");
 const otherAmount = document.getElementById("otherAmount");
 const payButton = document.getElementById("payButton");
@@ -281,7 +336,7 @@ function payViaUPI(){
   statusBox.textContent = "Opening your UPI app…";
   window.location.href = uri;
   setTimeout(() => {
-    statusBox.innerHTML = "If the UPI app did not open, please scan the QR code below or use <strong>93913729112@axl</strong>.";
+    statusBox.innerHTML = "If the UPI app did not open, please scan the QR code below or use <strong>pasulaikrishna@axl</strong>.";
   }, 1800);
 }
 
@@ -292,6 +347,23 @@ async function copyUPI(){
   }catch(e){
     document.getElementById("copyStatus").textContent = "Please copy this UPI ID manually: " + UPI_ID;
   }
+}
+
+function createDonationQR(){
+  const box = document.getElementById("upiQr");
+  if(!box || typeof QRCode === "undefined") return;
+  box.innerHTML = "";
+  const qrData =
+    "upi://pay?pa=" + encodeURIComponent(UPI_ID) +
+    "&pn=" + encodeURIComponent(PAYEE) +
+    "&cu=INR";
+
+  new QRCode(box, {
+    text: qrData,
+    width: 290,
+    height: 290,
+    correctLevel: QRCode.CorrectLevel.H
+  });
 }
 
 // Google Apps Script Web App URL.
@@ -329,6 +401,7 @@ function submitDonationForm(){
   }
 
   document.getElementById("formAmount").value = selectedAmount;
+  document.getElementById("donationForm").action = DONATION_ENDPOINT;
   document.getElementById("formStatus").textContent =
     "Submitting your donation details…";
 
@@ -346,6 +419,7 @@ function submitDonationForm(){
   return true;
 }
 
+createDonationQR();
 </script>
 </body>
 </html>
