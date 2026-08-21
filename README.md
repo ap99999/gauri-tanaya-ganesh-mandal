@@ -1,1 +1,0 @@
-# gauri-tanaya-ganesh-mandal
