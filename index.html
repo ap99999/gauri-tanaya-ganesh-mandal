@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#4d0717">
+<meta name="description" content="Ganesh Chanda donation page for Gauri Tanaya Ganesh Mandal, Kolipura, Adilabad.">
+<title>Gauri Tanaya Ganesh Mandal | Ganesh Chanda</title>
+<style>
+:root{
+  --maroon:#4d0717;--maroon2:#760d27;--gold:#f6c744;--cream:#fff8ea;
+  --ink:#3c171d;--muted:#70565a;--line:#efc976;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  background:
+    radial-gradient(circle at 10% 20%,rgba(246,199,68,.10),transparent 25%),
+    radial-gradient(circle at 90% 55%,rgba(246,199,68,.08),transparent 25%),
+    linear-gradient(135deg,#3b0511,#65091e 45%,#3f0614);
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.10;
+  background-image:radial-gradient(circle,#f6c744 1px,transparent 1px);
+  background-size:28px 28px;
+}
+.top-garland{
+  height:58px;background:linear-gradient(90deg,#f59e0b,#f6c744,#f59e0b);
+  clip-path:polygon(0 0,100% 0,100% 48%,96% 48%,94% 100%,90% 48%,86% 100%,82% 48%,78% 100%,74% 48%,70% 100%,66% 48%,62% 100%,58% 48%,54% 100%,50% 48%,46% 100%,42% 48%,38% 100%,34% 48%,30% 100%,26% 48%,22% 100%,18% 48%,14% 100%,10% 48%,6% 100%,4% 48%,0 48%);
+}
+.hero{
+  max-width:1200px;margin:0 auto;padding:34px 22px 28px;display:grid;
+  grid-template-columns:minmax(280px,43%) 1fr;gap:34px;align-items:center;
+}
+.hero-image{
+  width:100%;height:560px;object-fit:cover;object-position:center top;
+  border-radius:30px;box-shadow:0 22px 50px rgba(0,0,0,.35);
+  border:2px solid rgba(246,199,68,.45);
+}
+.hero-copy{text-align:center;color:#fff}
+.om{font-size:58px;color:var(--gold);line-height:1;margin-bottom:8px}
+h1{font-family:Georgia,serif;font-size:clamp(38px,5vw,68px);line-height:1.02;margin:0;color:#ffd85e;text-shadow:0 3px 0 #6d0b20}
+.location{font-family:Georgia,serif;font-size:23px;margin:20px 0;color:#fff}
+.divider{width:220px;height:2px;background:var(--gold);margin:20px auto;position:relative}
+.divider:after{content:"✦";position:absolute;left:50%;top:50%;transform:translate(-50%,-55%);background:#58091a;padding:0 12px;color:var(--gold)}
+.tag{font-size:18px;line-height:1.55;max-width:610px;margin:0 auto;color:#fff8ea}
+.blessing{display:inline-block;margin-top:22px;padding:12px 22px;border-radius:14px;background:#fff0c4;color:#591323;font-weight:800;font-size:17px}
+.main{max-width:1120px;margin:0 auto;padding:0 18px 34px}
+.card{
+  background:linear-gradient(180deg,#fffaf0,#fff5df);border:1px solid #efcf8d;border-radius:28px;
+  box-shadow:0 18px 45px rgba(0,0,0,.20);padding:28px;margin-top:22px;
+}
+.section-title{text-align:center;color:#671226;font-family:Georgia,serif;font-size:27px;margin:0 0 22px}
+.section-title:before,.section-title:after{content:"❧";color:#d79616;margin:0 18px;font-size:20px}
+.amounts{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.amount{
+  border:0;border-radius:13px;padding:17px 8px;background:linear-gradient(135deg,#980f32,#530718);
+  color:#fff;font-size:20px;font-weight:850;cursor:pointer;box-shadow:0 8px 16px rgba(77,7,23,.18)
+}
+.amount.active,.amount:hover{outline:3px solid #f0c65a;transform:translateY(-1px)}
+.other{margin-top:14px;display:flex;gap:12px;align-items:center}
+.other label{font-weight:800;color:#651227;white-space:nowrap}
+.other input{
+  width:100%;padding:15px 16px;border:1px solid #dfb96b;border-radius:12px;font-size:18px;
+  background:#fff;outline:none
+}
+.other input:focus{border-color:#8d1735;box-shadow:0 0 0 3px rgba(141,23,53,.12)}
+.pay{
+  display:block;width:min(650px,100%);margin:22px auto 0;border:0;border-radius:15px;
+  padding:18px;background:linear-gradient(135deg,#a91236,#57091c);color:#fff;font-size:23px;
+  font-weight:900;cursor:pointer;box-shadow:0 12px 22px rgba(77,7,23,.22)
+}
+.pay:disabled{opacity:.55;cursor:not-allowed}
+.pay small{display:block;font-size:13px;font-weight:600;margin-top:3px}
+.help{text-align:center;color:var(--muted);font-size:13px;line-height:1.5;margin:11px auto 0;max-width:720px}
+.status{text-align:center;font-weight:750;color:#671226;min-height:22px;margin:10px 0 0}
+.payment-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+.qr-box{text-align:center}
+.qr{
+  width:min(360px,100%);display:block;margin:0 auto 12px;background:#fff;padding:8px;border-radius:16px;
+  border:1px solid #ebcf97
+}
+.payee{font-weight:900;color:#5b1022;font-size:17px;margin:7px 0}
+.upi-row{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap}
+.upi-id{font-weight:850;background:#fff;border:1px solid #e1bd72;padding:11px 13px;border-radius:10px;word-break:break-all}
+.copy{border:0;background:#671226;color:#fff;border-radius:10px;padding:11px 14px;font-weight:800;cursor:pointer}
+.apps{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.app{background:#fff;border:1px solid #e5c98f;border-radius:12px;padding:12px 14px;text-align:center;min-width:92px;font-weight:750;color:#4e2930}
+.app b{display:block;font-size:23px;margin-bottom:4px}
+.info{background:#fff0d0;border:1px solid #edc777;border-radius:14px;padding:15px;line-height:1.5;color:#4c2b2f}
+.footer-strip{
+  max-width:1120px;margin:22px auto 0;padding:18px;border-radius:20px;background:#56091b;color:#fff;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:center;border:1px solid #dcae35
+}
+.footer-strip b{display:block;color:#ffd34d;font-size:16px}.footer-strip span{font-size:13px}
+footer{text-align:center;color:#f6d477;padding:28px 18px 34px;font-size:13px}
+@media(max-width:820px){
+  .hero{grid-template-columns:1fr;padding-top:24px}.hero-image{height:480px}.hero-copy{padding:0 5px}
+  .amounts{grid-template-columns:repeat(3,1fr)}.payment-grid{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+  .top-garland{height:42px}.hero{padding:20px 14px}.hero-image{height:410px;border-radius:22px}
+  h1{font-size:39px}.om{font-size:45px}.location{font-size:19px}.tag{font-size:16px}
+  .card{padding:20px;border-radius:21px}.amounts{grid-template-columns:repeat(2,1fr)}.amount{font-size:18px}
+  .other{align-items:stretch;flex-direction:column;gap:7px}.pay{font-size:20px}
+  .footer-strip{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="top-garland"></div>
+
+<header class="hero">
+  <img class="hero-image" src="ganesh-image.jpg" alt="Ganesha" />
+  <div class="hero-copy">
+    <div class="om">ॐ</div>
+    <h1>Gauri Tanaya<br>Ganesh Mandal</h1>
+    <div class="location">❧ Kolipura, Adilabad ❧</div>
+    <div class="divider"></div>
+    <p class="tag">🌼 || Ganpati Bappa Morya || 🌼</p>
+    <p class="tag">Your contribution helps us celebrate Ganesh Utsav with devotion, unity and tradition.</p>
+    <p class="tag" style="color:#ffd84f;font-weight:800">Thank you for your generous support!</p>
+    <div class="blessing">♥ Every Contribution Makes a Big Difference</div>
+  </div>
+</header>
+
+<main class="main">
+  <section class="card">
+    <h2 class="section-title">Choose Donation Amount</h2>
+    <div class="amounts">
+      <button class="amount" data-amount="1001">₹1,001</button>
+      <button class="amount" data-amount="2001">₹2,001</button>
+      <button class="amount" data-amount="3001">₹3,001</button>
+      <button class="amount" data-amount="4001">₹4,001</button>
+      <button class="amount" data-amount="5001">₹5,001</button>
+    </div>
+    <div class="other">
+      <label for="otherAmount">🙏 Other Amount</label>
+      <input id="otherAmount" type="number" min="1" step="1" placeholder="Enter amount (₹)">
+    </div>
+    <button id="payButton" class="pay" type="button" onclick="payViaUPI()" disabled>
+      Donate Now via UPI
+      <small>Pay securely with any UPI App</small>
+    </button>
+    <div id="status" class="status">Please select an amount to continue.</div>
+    <p class="help">On mobile, the button will try to open an installed UPI app. If it doesn't open, simply scan the QR code or copy the UPI ID below.</p>
+  </section>
+
+  <section class="card">
+    <h2 class="section-title">Scan &amp; Pay</h2>
+    <div class="payment-grid">
+      <div class="qr-box">
+        <img class="qr" src="upi-qr.png" alt="PhonePe UPI QR code">
+        <div class="payee">MAKADIA AKSHAY PATEL</div>
+        <div class="upi-id">UPI ID: 93913729112@axl</div>
+      </div>
+      <div>
+        <h3 style="color:#671226;font-family:Georgia,serif;font-size:24px;margin-top:0">Pay Using Any UPI App</h3>
+        <div class="upi-row">
+          <span class="upi-id">93913729112@axl</span>
+          <button class="copy" type="button" onclick="copyUPI()">Copy UPI ID</button>
+        </div>
+        <div class="apps">
+          <div class="app"><b>पे</b>PhonePe</div>
+          <div class="app"><b>G</b>Google Pay</div>
+          <div class="app"><b>₹</b>Paytm</div>
+          <div class="app"><b>BH</b>BHIM</div>
+          <div class="app"><b>UPI</b>Any UPI App</div>
+        </div>
+        <div class="info">
+          ℹ️ UPI payments are received in the account of <strong>Makadia Akshay Patel</strong> on behalf of <strong>Gauri Tanaya Ganesh Mandal</strong>.
+        </div>
+        <p id="copyStatus" class="help"></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer-strip">
+    <div><b>🛡 100% Secure</b><span>Safe UPI Payments</span></div>
+    <div><b>♡ Your Support</b><span>Our Strength</span></div>
+    <div><b>✿ Thank You!</b><span>Ganpati Bappa Bless You</span></div>
+  </div>
+</main>
+
+<footer>© 2026 Gauri Tanaya Ganesh Mandal, Kolipura, Adilabad · Ganpati Bappa Morya 🙏</footer>
+
+<script>
+const UPI_ID = "93913729112@axl";
+const PAYEE = "MAKADIA AKSHAY PATEL";
+const amountButtons = document.querySelectorAll(".amount");
+const otherAmount = document.getElementById("otherAmount");
+const payButton = document.getElementById("payButton");
+const statusBox = document.getElementById("status");
+
+let selectedAmount = null;
+
+function setAmount(value, button=null){
+  const n = Number(value);
+  if(!Number.isFinite(n) || n < 1){
+    selectedAmount = null;
+    payButton.disabled = true;
+    statusBox.textContent = "Please enter a valid amount.";
+    return;
+  }
+  selectedAmount = Math.round(n);
+  amountButtons.forEach(b => b.classList.remove("active"));
+  if(button) button.classList.add("active");
+  otherAmount.value = button ? "" : selectedAmount;
+  payButton.disabled = false;
+  statusBox.textContent = `Selected donation: ₹${selectedAmount.toLocaleString("en-IN")}`;
+}
+
+amountButtons.forEach(button => {
+  button.addEventListener("click", () => setAmount(button.dataset.amount, button));
+});
+
+otherAmount.addEventListener("input", () => {
+  if(otherAmount.value.trim() === ""){
+    selectedAmount = null;
+    payButton.disabled = true;
+    statusBox.textContent = "Please select an amount to continue.";
+    amountButtons.forEach(b => b.classList.remove("active"));
+  } else {
+    setAmount(otherAmount.value);
+  }
+});
+
+function payViaUPI(){
+  if(!selectedAmount || selectedAmount < 1) return;
+  const uri =
+    `upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent(PAYEE)}&am=${selectedAmount.toFixed(2)}&cu=INR`;
+  statusBox.textContent = "Opening your UPI app…";
+  window.location.href = uri;
+  setTimeout(() => {
+    statusBox.innerHTML = "If the UPI app did not open, please scan the QR code below or use <strong>93913729112@axl</strong>.";
+  }, 1800);
+}
+
+async function copyUPI(){
+  try{
+    await navigator.clipboard.writeText(UPI_ID);
+    document.getElementById("copyStatus").textContent = "UPI ID copied successfully.";
+  }catch(e){
+    document.getElementById("copyStatus").textContent = "Please copy this UPI ID manually: " + UPI_ID;
+  }
+}
+</script>
+</body>
+</html>
